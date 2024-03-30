@@ -6,8 +6,11 @@ import {
   Text,
   View,
   SafeAreaView,
+  FlatList,
+  Platform
 } from "react-native";
 import useSWR from "swr";
+import PostListItem from "./src/components/PostListItem";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
@@ -33,12 +36,15 @@ export default function App() {
     );
   }
 
-  console.log(JSON.stringify(data, null, 2));
-
   return (
     <SafeAreaView style={styles.container}>
-      <Text>Hello World</Text>
+      <FlatList
+        data={data}
+        renderItem={({item}) => <PostListItem post={item} />}
+        contentContainerStyle={{ gap: 10, padding: 10}}
+      />
       <StatusBar style="auto" />
+
     </SafeAreaView>
   );
 }
@@ -46,8 +52,9 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "ghostwhite",
     alignItems: "center",
     justifyContent: "center",
+    paddingTop: Platform.OS === 'android' ? 28 : 0
   },
 });
