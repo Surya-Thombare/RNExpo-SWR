@@ -1,6 +1,5 @@
-import { View, Text, SafeAreaView, StyleSheet } from 'react-native'
 import React from 'react'
-import { ScrollView } from 'react-native-virtualized-view';
+import { View, Text, SafeAreaView, StyleSheet } from 'react-native'
 import { useUser } from '../hooks/users';
 
 
