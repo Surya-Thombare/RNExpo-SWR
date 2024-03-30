@@ -9,16 +9,11 @@ import {
   FlatList,
   Platform
 } from "react-native";
-import useSWR from "swr";
 import PostListItem from "./src/components/PostListItem";
-
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
+import { usePosts } from "./src/hooks/posts";
 
 export default function App() {
-  const { data, error, isLoading } = useSWR(
-    "https://jsonplaceholder.typicode.com/posts",
-    fetcher
-  );
+ const { posts, isLoading, error} = usePosts()
 
   if (isLoading) {
     return (
@@ -39,7 +34,7 @@ export default function App() {
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
-        data={data}
+        data={posts}
         renderItem={({item}) => <PostListItem post={item} />}
         contentContainerStyle={{ gap: 10, padding: 10}}
       />
