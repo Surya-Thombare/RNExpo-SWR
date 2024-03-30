@@ -4,8 +4,7 @@ import { fetcher } from "../utils/fetcher";
 export function usePosts() {
 
   const { data, error, isLoading } = useSWR(
-    "https://jsonplaceholder.typicode.com/posts",
-    fetcher
+    "https://jsonplaceholder.typicode.com/posts"
   );
 
   return { posts: data, error, isLoading }
